@@ -28,7 +28,7 @@ class SelfiesController < ApplicationController
   # POST /selfies
   # POST /selfies.json
   def create
-    @selfie = @group_shot.selfies.build(user_id: selfie_params[:user_id], image: selfie_params[:image])
+    @selfie = @group_shot.selfies.build(user_id: current_user.id, image: selfie_params[:image])
 
     respond_to do |format|
       if @selfie.save
