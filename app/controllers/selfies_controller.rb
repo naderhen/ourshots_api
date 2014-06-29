@@ -28,8 +28,7 @@ class SelfiesController < ApplicationController
   # POST /selfies
   # POST /selfies.json
   def create
-    binding.pry
-    @selfie = Selfie.new(selfie_params)
+    @selfie = @group_shot.selfies.build(user_id: selfie_params[:user_id], image: selfie_params[:image])
 
     respond_to do |format|
       if @selfie.save
@@ -83,6 +82,6 @@ class SelfiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def selfie_params
-      params[:selfie]
+      params.permit!
     end
 end
