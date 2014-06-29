@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   resources :device_tokens
+
+  resources :groups do
+    resources :group_shots do
+      resources :selfies
+    end
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

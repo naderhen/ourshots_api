@@ -1,0 +1,2 @@
+module GroupShotsHelper
+end
