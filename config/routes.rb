@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  devise_scope :user do
+    post 'sessions' => 'sessions#create', :as => 'login'
+    delete 'sessions' => 'sessions#destroy', :as => 'logout'
+  end
+
   resources :users do
     resource :friends
   end
