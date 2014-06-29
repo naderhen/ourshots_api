@@ -1,5 +1,6 @@
 class DeviceTokensController < ApplicationController
   before_action :set_device_token, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token
 
   # GET /device_tokens
   # GET /device_tokens.json
@@ -24,7 +25,8 @@ class DeviceTokensController < ApplicationController
   # POST /device_tokens
   # POST /device_tokens.json
   def create
-    @device_token = current_user.device_tokens.create(device_token_params)
+    u = User.last
+    @device_token = u.device_tokens.find_or_create_by(device_token_params)
 
     respond_to do |format|
       if @device_token.save
@@ -69,6 +71,6 @@ class DeviceTokensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def device_token_params
-      params[:device_token]
+      params[:device_token].permit!
     end
 end
