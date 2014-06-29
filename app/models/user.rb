@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :friendships
   has_many :friends, through: :friendships
+
+  has_many :group_registrations
+  has_many :groups, through: :group_registrations
 end
