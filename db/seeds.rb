@@ -23,6 +23,13 @@ g = Group.create(name: "Sandbox Group")
 g.group_registrations.create(user_id: u.id)
 g.group_registrations.create(user_id: u2.id)
 
+
+g2 = Group.create(name: "Nader Only")
+g2.group_registrations.create(user_id: u.id)
+
+g3 = Group.create(name: "Lindsay Only")
+g3.group_registrations.create(user_id: u2.id)
+
 gs1 = g.group_shots.create(date: Date.yesterday)
 gs2 = g.group_shots.create(date: Date.today)
 
